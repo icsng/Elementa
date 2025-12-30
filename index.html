@@ -8,7 +8,6 @@
 </head>
 <body>
     <header>
-        
         <div class="menu_all">
             <div class="name-logo">
                 <img src="Elementa-logo.png" alt="Logo" class="logo">
@@ -16,23 +15,38 @@
                     <span class="name">Elementa</span>
                     <span class="second-name">decor for you</span>
                 </div>
-        
             </div>
             
             <div class="menu-all">
                 <a class="menu cart" href="cart.html">cart</a>
                 <a class="menu contacts" href="contacts.html">contacts</a>
                 <div class="search">
-                    <p class="menu search search-text">search</p>
                     <input class="menu search search-input" type="search">
                     <img src="search.png" alt="Search" class="image-as-button search" onclick="searchFunction()" width="35" height="35">
                 </div>
-                
-            </div>
-            
+            </div>  
         </div>
     </header>
 
+    <main>
+        <div class="title">
+            <p class="t-t">what we sell</p>
+        </div>
+
+        <div class="product pr-1">
+            <div class="card-1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_5SOoyNL5PAvI8WHu5LrTVykHSMM4YC2qbwViuCbddy1GaSigvyQOGQwkQAklAi7Mo-I&usqp=CAU" alt="medusa-lamp" class="ph-1">
+            </div>
+            <div class="btn btn-1">
+                <button class="btn_1 minus add clicked m-1 clicked-1">-</button>
+                <!-- <span class="num num-1 btn_1 clicked clicked-1">1</span> -->
+                <button class="cart-btn cart-1 btn_1">
+                    <img src="cart.png" class="cart-img">
+                </button>
+                <button class="btn_1 plus add clicked clicked-1 pl-1">+</button>
+            </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>  
 </body>
