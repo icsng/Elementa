@@ -142,41 +142,46 @@ a{
     color: #000000;
 }
 
-.card-1{
+.products{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 40px;
+}
+
+.card{
     background-color: #D2BD96;
     border: 4px solid #000000;
     border-radius: 20px; 
     width: 275px;
     height: 275px;
-    margin: 25px;
     padding: 20px;
+    margin: 25px;
 }
 
-.ph-1{
+.photo{
     width: 225px;
     height: 225px;
     border: 4px solid #000000;
     border-radius: 20px; 
 }
 
-.btn{
+.btn-all{
     display: flex;
     flex-direction: row;
-    gap: 45px;
+}
+
+.btn{    
     line-height: 1;
-}
-
-.btn-1{
-    margin: 25px;   
-    color:#000000;
-}
-
-.btn_1{
     background: #9D8A66;
     border: 4px solid #000;
     border-radius: 50px;
     height: 45px;
-    
+    margin: 15px; 
+    margin-left: 25px;  
+    color:#000000;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,11 +200,62 @@ a{
     width: 35px;
 }
 
-.clicked-1{
+.clicked{
     font-size: 35px;
     font-family: 'Rammetto One';
 }
 
+.product{
+    background-color: #d3c5b2;
+    border-radius: 20px;
+    margin: 15px;
+    border: 4px solid #000000;
+}
+
+footer{
+    background-color: #E0D9CF;
+    padding: 25px;
+    border: 4px solid #000000;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.foot{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.social-media{
+    display: flex;
+    flex-direction: column;
+}
+
+.s-m-logo{
+    width: 32px;
+    height: 32px;
+}
+
+.s-m{
+    font-size: 25px;
+    font-family: ABeeZee;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.by{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    font-size: 23px;
+    font-family: ABeeZee;
+}
+
+.last{
+    margin: auto;
+}
 
 @media (max-width: 860px) {
     .menu-all {
@@ -233,5 +289,19 @@ a{
     }   
     .title{
         height: 45px;
+    }
+    .product{
+        margin: auto;
+    }
+    footer{
+        padding: 15px;
+    }
+    .name-logo-2{
+        margin-left: 15px;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .by{
+        margin-top: 20px;
     }
 }
