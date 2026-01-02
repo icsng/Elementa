@@ -12,7 +12,8 @@ body{
 }
 
 header{
-    height: 80px;
+    /* height: 80px; */
+    height: auto;
     width: 100%;
     background: #E0D9CF;
     display: flex;
@@ -119,12 +120,14 @@ a{
     border-radius: 50px;
 }
 
-.search-image-btn {
+.search-btn{
+    background: transparent;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    padding: 10px;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .title{
@@ -434,6 +437,13 @@ option{
     flex-direction: row;
 }
 
+.name-logo-subm{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 0.8em;
+}
+
 /* thank you */
 .th-u{
     font-family: 'ABeeZee';
@@ -563,5 +573,9 @@ option{
     .s-m-con{
         width: 25px;
         height: 25px;    
+    }
+    .name-logo-subm{
+        width: 100%;
+        justify-content: center;
     }
 }

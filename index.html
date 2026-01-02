@@ -25,13 +25,12 @@
             <div class="menu-all">
                 <a class="menu cart" href="cart.html">cart</a>
                 <a class="menu contacts" href="contacts.html">contacts</a>
-                <div class="search">
-                    <input class="menu search search-input" type="search">
-                    <a href="search-result.html">
+                <form class="search" action="search-result.html">
+                    <input class="menu search search-input" type="search" required>
+                    <button type="submit" class="search-btn">
                         <img src="search.png" alt="Search" class="image-as-button search" onclick="searchFunction()" width="35" height="35">
-                    </a>
-                    
-                </div>
+                    </button>
+                </form>
             </div>  
         </div>
     </header>
