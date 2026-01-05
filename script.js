@@ -311,7 +311,58 @@ function initHeaderScroll() {
     document.addEventListener('DOMContentLoaded', adjustMainMargin);
 }
 
+// other country input
+function handleCountrySelection() {
+    const countrySelect = document.querySelector('select.inp');
+    const form = document.querySelector('.contact-form');
+    
+    if (!countrySelect || !form) return;
+    
+    const otherCountryInput = document.createElement('div');
+    otherCountryInput.className = 'other-country-container';
+    otherCountryInput.style.display = 'none';
+    otherCountryInput.innerHTML = `
+        <label for="other-country">Specify Country</label>
+        <input type="text" class="inp" id="other-country" 
+               placeholder="Enter your country name" 
+               style="margin-top: 5px;">
+    `;
+    
+    const countrySelectContainer = countrySelect.closest('div');
+    if (countrySelectContainer) {
+        countrySelectContainer.appendChild(otherCountryInput);
+    }
 
+    countrySelect.addEventListener('change', function() {
+        if (this.value === 'other') {
+            otherCountryInput.style.display = 'block';
+            const otherInput = otherCountryInput.querySelector('#other-country');
+            if (otherInput) otherInput.required = true;
+        } else {
+            otherCountryInput.style.display = 'none';
+            const otherInput = otherCountryInput.querySelector('#other-country');
+            if (otherInput) otherInput.required = false;
+        }
+    });
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            if (countrySelect.value === 'other') {
+                const otherCountryValue = document.getElementById('other-country').value;
+                if (!otherCountryValue || otherCountryValue.trim() === '') {
+                    e.preventDefault();
+                    alert('Please specify your country name');
+                    document.getElementById('other-country').focus();
+                }
+            }
+        });
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    handleCountrySelection();
+});
 
 
 
