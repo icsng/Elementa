@@ -253,3 +253,76 @@ document.addEventListener("DOMContentLoaded", function () {
     
     console.log("Flip cards initialized for all 12 products");
 });
+
+// smart header part-1
+
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+const scrollThreshold = 70;
+const mainContent = document.querySelector('main');
+
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+function handleHeaderScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop === 0) {
+        header.classList.remove('hide');
+        return;
+    }
+
+    if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+        header.classList.add('hide');
+    } 
+    else if (scrollTop < lastScrollTop) {
+        header.classList.remove('hide');
+    }
+    
+    lastScrollTop = scrollTop;
+}
+
+function adjustMainMargin() {
+    if (!mainContent) return;
+    
+    if (header.classList.contains('hide')) {
+        mainContent.style.marginTop = '20px';
+        mainContent.style.marginTop = '120px';
+    }
+}
+
+function initHeaderScroll() {
+    window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
+    
+    window.addEventListener('scroll', throttle(adjustMainMargin, 100));
+
+    window.addEventListener('load', adjustMainMargin);
+    
+    document.addEventListener('DOMContentLoaded', adjustMainMargin);
+}
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    initHeaderScroll();
+});
+
+
+window.addEventListener('load', function() {
+    adjustMainMargin();
+});
