@@ -569,8 +569,7 @@ function showRemovalNotification(productName) {
     const notification = document.createElement('div');
     notification.className = 'cart-notification';
     notification.innerHTML = `
-        <span>Removed "${productName}" from cart</span>
-    `;
+        <span>Removed "${productName}" from cart</span>`;
     
     notification.style.cssText = `
         position: fixed;
@@ -666,39 +665,35 @@ function updateCartButtonDisplay(button, quantity) {
         button.classList.add('has-quantity');
         
         button.style.cssText = `
-            width: 45px !important;
-            height: 45px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background: #9D8A66 !important;
-            border: 4px solid #000 !important;
-            border-radius: 50% !important;
-            font-family: 'Rammetto One', sans-serif !important;
-            font-size: 24px !important;
-            color: #000000 !important;
-            margin: 15px !important;
-            margin-left: 25px !important;
-            cursor: pointer !important;
-            padding: 0 !important;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #9D8A66;
+            border: 4px solid #000;
+            border-radius: 50%;
+            font-family: 'Rammetto One', sans-serif;
+            font-size: 24px;
+            color: #000000;
+            cursor: pointer;
+            padding: 0;
         `;
     } else {
         button.innerHTML = `<img src="cart.png" class="cart-img">`;
         button.classList.remove('has-quantity');
         
         button.style.cssText = `
-            width: 95px !important;
-            height: 45px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background: #9D8A66 !important;
-            border: 4px solid #000 !important;
-            border-radius: 50px !important;
-            margin: 15px !important;
-            margin-left: 25px !important;
-            cursor: pointer !important;
-            padding: 0 !important;
+            width: 95px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #9D8A66;
+            border: 4px solid #000;
+            border-radius: 50px;
+            cursor: pointer;
+            padding: 0 ;
         `;
         
         const cartImg = button.querySelector('.cart-img');
@@ -1013,17 +1008,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const style = document.createElement('style');
-style.textContent = `
+
+style.textContent =`
     @keyframes slideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
-    
+
     @keyframes fadeOut {
         from { opacity: 1; }
         to { opacity: 0; transform: translateX(100%); }
     }
-    
+
     .cart-item {
         display: flex;
         align-items: center;
@@ -1036,24 +1032,24 @@ style.textContent = `
         font-family: 'ABeeZee', sans-serif;
         width: 80%;
     }
-    
+
     .cart-item-img img {
         border-radius: 10px;
         border: 2px solid #000000;
     }
-    
+
     .cart-item-name {
         flex: 2;
         padding: 0 15px;
         font-size: 16px;
     }
-    
+
     .cart-item-quantity {
         display: flex;
         align-items: center;
         gap: 10px;
     }
-    
+
     .quantity-btn {
         width: 30px;
         height: 30px;
@@ -1066,20 +1062,20 @@ style.textContent = `
         align-items: center;
         justify-content: center;
     }
-    
+
     .quantity-display {
         min-width: 30px;
         text-align: center;
         font-weight: bold;
     }
-    
+
     .cart-item-price {
         font-weight: bold;
         min-width: 80px;
         text-align: right;
         font-size: 18px;
     }
-    
+
     .remove-btn {
         width: 35px;
         height: 35px;
@@ -1094,11 +1090,9 @@ style.textContent = `
         align-items: center;
         justify-content: center;
     }
-`;
+`
+
 document.head.appendChild(style);
-
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
