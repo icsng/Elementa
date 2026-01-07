@@ -364,10 +364,352 @@ document.addEventListener('DOMContentLoaded', function() {
     handleCountrySelection();
 });
 
+// CART
+const productCartData = [
+    { id: 1, name: "Medusa 3D night light", price: 10.00, image: "product-1.jpg" },
+    { id: 2, name: "Rabbit figure", price: 5.66, image: "prooduct-2.jpg" },
+    { id: 3, name: "Doormat with Cats", price: 2.61, image: "product-3.jpg" },
+    { id: 4, name: "Painting Mona Lisa", price: 11.88, image: "product-4.jpg" },
+    { id: 5, name: "Owl on a stake - Wooden sculpture", price: 113.12, image: "product-5.jpg" },
+    { id: 6, name: "Painting Starry night", price: 7.66, image: "product-6.jpg" },
+    { id: 7, name: "Hanging decoration Heart", price: 1.10, image: "product-7.jpg" },
+    { id: 8, name: "Decorative figure Owl", price: 7.07, image: "product-8.jpg" },
+    { id: 9, name: "Wall decor Blue sea wave", price: 12.93, image: "product-9.jpg" },
+    { id: 10, name: "Crystal ball with 3D cat", price: 6.06, image: "product-10.jpg" },
+    { id: 11, name: "Owl figure", price: 38.38, image: "product-11.jpg" },
+    { id: 12, name: "Florarium Nature", price: 103.02, image: "product-12.jpg" }
+];
 
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+function initializeCartButtons() {
+    const cartButtons = document.querySelectorAll('.cart-btn');
+    
+    cartButtons.forEach((button, index) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(index + 1);
+        });
+    });
+}
 
+function addToCart(productId) {
+    const product = productCartData.find(p => p.id === productId);
+    if (!product) return;
+    
+    const existingItem = cart.find(item => item.id === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            image: product.image
+        });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    showCartNotification(product.name);
+    
+    if (window.location.pathname.includes('cart.html')) {
+        displayCartItems();
+    }
+}
 
+function showCartNotification(productName) {
+    const existingNotification = document.querySelector('.cart-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+        <span>✓ Added "${productName}" to cart!</span>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 16px;
+        z-index: 10000;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        animation: slideIn 0.3s ease, fadeOut 0.3s ease 2s forwards;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 2300);
+}
+
+function displayCartItems() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const emptyCartDiv = document.querySelector('.empty-cart');
+    const cartHeader = document.querySelector('.cart-header');
+    const cartSummary = document.querySelector('.cart-summary');
+    const cartActions = document.querySelector('.cart-actions');
+    
+    if (!cartItemsContainer) return;
+    
+    cartItemsContainer.innerHTML = '';
+    
+    if (cart.length === 0) {
+        if (emptyCartDiv) emptyCartDiv.style.display = 'block';
+        if (cartHeader) cartHeader.style.display = 'none';
+        if (cartSummary) cartSummary.style.display = 'none';
+        if (cartActions) cartActions.style.display = 'none';
+        return;
+    }
+    
+    if (emptyCartDiv) emptyCartDiv.style.display = 'none';
+    if (cartHeader) cartHeader.style.display = 'flex';
+    if (cartSummary) cartSummary.style.display = 'block';
+    if (cartActions) cartActions.style.display = 'block';
+    
+    let total = 0;
+    
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+            <div class="cart-item-img">
+                <img src="${item.image}" alt="${item.name}" width="50" height="50">
+            </div>
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-quantity">
+                <button class="quantity-btn minus-btn" data-index="${index}">-</button>
+                <span class="quantity-display">${item.quantity}</span>
+                <button class="quantity-btn plus-btn" data-index="${index}">+</button>
+            </div>
+            <div class="cart-item-price">€${itemTotal.toFixed(2)}</div>
+            <div class="cart-item-remove">
+                <button class="remove-btn" data-index="${index}">×</button>
+            </div>
+        `;
+        
+        cartItemsContainer.appendChild(cartItem);
+    });
+    
+    const summaryValue = document.querySelector('.summary-value');
+    if (summaryValue) {
+        summaryValue.textContent = `€${total.toFixed(2)}`;
+    }
+    
+    addCartItemListeners();
+}
+
+function addCartItemListeners() {
+    document.querySelectorAll('.minus-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            updateQuantity(index, -1);
+        });
+    });
+    
+    document.querySelectorAll('.plus-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            updateQuantity(index, 1);
+        });
+    });
+    
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            removeFromCart(index);
+        });
+    });
+}
+
+function updateQuantity(index, change) {
+    if (cart[index]) {
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCartItems();
+    }
+}
+
+function removeFromCart(index) {
+    if (cart[index]) {
+        const removedItem = cart[index];
+        cart.splice(index, 1);
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        showRemovalNotification(removedItem.name);
+        
+        displayCartItems();
+    }
+}
+
+function showRemovalNotification(productName) {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+        <span>Removed "${productName}" from cart</span>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background-color: #ff4444;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 16px;
+        z-index: 10000;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        animation: slideIn 0.3s ease, fadeOut 0.3s ease 2s forwards;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 2300);
+}
+
+function initializeBuyButton() {
+    const buyBtn = document.querySelector('.buy-btn');
+    if (buyBtn) {
+        buyBtn.addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            alert('Thank you for your purchase! Total: €' + 
+                  cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2));
+            
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCartItems();
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.cart-btn')) {
+        initializeCartButtons();
+    }
+    
+    if (document.getElementById('cart-items')) {
+        displayCartItems();
+        initializeBuyButton();
+    }
+});
+
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; transform: translateX(100%); }
+    }
+    
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        margin: 10px auto;
+        background-color: #EEE9E1;
+        border: 3px solid #000000;
+        border-radius: 15px;
+        font-family: 'ABeeZee', sans-serif;
+        width: 80%;
+    }
+    
+    .cart-item-img img {
+        border-radius: 10px;
+        border: 2px solid #000000;
+    }
+    
+    .cart-item-name {
+        flex: 2;
+        padding: 0 15px;
+        font-size: 16px;
+    }
+    
+    .cart-item-quantity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .quantity-btn {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #000000;
+        border-radius: 50%;
+        background-color: #9D8A66;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .quantity-display {
+        min-width: 30px;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .cart-item-price {
+        font-weight: bold;
+        min-width: 80px;
+        text-align: right;
+        font-size: 18px;
+    }
+    
+    .remove-btn {
+        width: 35px;
+        height: 35px;
+        border: 2px solid #000000;
+        border-radius: 50%;
+        background-color: #ff4444;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+`;
+document.head.appendChild(style);
 
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
