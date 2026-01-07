@@ -21,6 +21,7 @@ header{
     align-items: center;
     position: relative; 
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
 
     position: fixed;
     top: 0;         
@@ -74,10 +75,6 @@ a{
     gap: 10px;
 }
 
-.search-input{
-    padding: 8px;
-}
-
 .menu{
     font-family: 'ABeeZee';
     font-style: normal;
@@ -126,7 +123,9 @@ a{
 
     background: #FFFFFF;
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 50px;
+    padding: 8px;
 }
 
 .search-btn{
@@ -143,6 +142,7 @@ a{
     position: static;
     background-color: #D2BD96;
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
     width: 175px;
     height: 57px;
@@ -176,6 +176,7 @@ main{
 .card{
     background-color: #D2BD96;
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px; 
     width: 275px;
     height: 275px;
@@ -201,21 +202,6 @@ main{
     margin-bottom: 15px;
 }
 
-/* .btn{    
-    line-height: 1;
-    background: #9D8A66;
-    border: 4px solid #000;
-    border-radius: 50px;
-    height: 45px;
-    margin: 15px; 
-    margin-left: 25px;  
-    color:#000000;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
 .minus.add, .plus.add {
     width: 45px;
     height: 45px;
@@ -228,6 +214,7 @@ main{
     line-height: 1;
     background: #9D8A66;
     border: 4px solid #000;
+    box-shadow: 0 2px 0 #000000;
     color: #000000;
     display: flex;
     justify-content: center;
@@ -268,6 +255,7 @@ main{
     margin: 15px;
     border: 4px solid #000000;
     padding-bottom: 10px;
+    box-shadow: 0 2px 0 #000000;
 }
 
 .minus, .plus {
@@ -355,6 +343,8 @@ footer{
     background-color: #EEE9E1;
     border: 4px solid #000000;
     border-radius: 20px;
+    box-shadow: 0 2px 0 #000000;
+
 }
 
 .q{
@@ -369,6 +359,7 @@ footer{
     padding: 5px;
     border: 3px solid #000000;
     border-radius: 20px;
+    box-shadow: 0 2px 0 #000000;
 }
 
 .c-m{
@@ -381,11 +372,16 @@ footer{
     height: auto;
     width: auto;
     border: 3px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
     font-family: ABeeZee;
     font-size: 17px;
     padding: 10px;
     margin-top: 15px;
+}
+
+.c-m-btn:hover{
+    box-shadow: 0px 0px #000000;
 }
 
 .contacts{
@@ -400,6 +396,7 @@ footer{
     height: auto;
     width: 30%;
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
     font-family: ABeeZee;
     font-size: 20px;
@@ -438,6 +435,7 @@ footer{
     width: 425px;
     height: auto;
     border:  4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
 }
 
@@ -462,12 +460,14 @@ footer{
 
     background-color: #d3c5b2;
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
 }
 
 .contact-info, .address-info{
     background-color: #E0D9CF;
     border: 3px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
 
     padding: 25px;
@@ -506,6 +506,7 @@ option{
     font-size: 20px;
     color: #000000;
     border: 3px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
     padding: 8px;
     margin: 30px auto;
@@ -559,7 +560,8 @@ option{
     background-color: #E0D9CF;
     padding: 10px 15px;
     width: 150px;
-    border: 3px solid #000000;  
+    border: 3px solid #000000; 
+    box-shadow: 0 2px 0 #000000; 
     border-radius: 20px;  
 }
 
@@ -567,7 +569,8 @@ option{
 
 .no-results{
     background-color: #D2BD96;
-    border: 3px solid #000000;  
+    border: 3px solid #000000; 
+    box-shadow: 0 2px 0 #000000; 
     border-radius: 20px;  
     padding: 8px;
     margin: 25px;
@@ -585,6 +588,7 @@ option{
 .search-results-header{
     background-color: #D2BD96;
     border: 3px solid #000000;  
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;  
     padding: 8px;
     margin: 25px;
@@ -598,6 +602,7 @@ option{
 .no-more{
     background-color: #D2BD96;
     border: 3px solid #000000;  
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;  
     padding: 8px;
     margin: 25px;
@@ -637,32 +642,45 @@ option{
     display: none;
 }
 
-.buy-btn{
-    margin: 15px 40px;
-    padding: 8px;
-    border: 4px solid #000000; 
-    border-radius: 20px; 
+.buy-btn {
+    padding: 15px 40px;
+    border: 4px solid #000000;
+    border-radius: 25px;
     background-color: #9D8A66;
-    font-family: 'ABeeZee';
-    font-size: 20px;
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
     color: #000000;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 2px 0 #000000;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 30px auto;
+    width: auto;
 }
 
-.cart-actions{
-    display: none;
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .cart-tit{
     background-color: #D2BD96;
     border: 4px solid #000000; 
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px; 
     padding: 8px;
-    margin: 20px 45px;
+    margin: 20px auto;
     font-family: 'ABeeZee';
     font-size: 20px;
     color: #000000;
     height: auto;
-    width: 125px;
+    width: 115px;
 }
 
 .cart-header{
@@ -677,7 +695,8 @@ option{
 
     background-color: #d3c5b2;
     width: 80%;
-    border: 4px solid #000000;
+    border: 3px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
 }
 
@@ -691,6 +710,7 @@ option{
     background-color: #d3c5b2;
     width: 250px;
     border: 4px solid #000000;
+    box-shadow: 0 2px 0 #000000;
     border-radius: 20px;
     font-family: 'ABeeZee';
     font-size: 20px;
@@ -715,7 +735,6 @@ option{
     .menu-all {
       gap: 18px;
       display: flex;
-      justify-content: flex-start;
       justify-content: space-around;
     }
     .search-input{

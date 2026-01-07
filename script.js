@@ -490,18 +490,18 @@ function displayCartItems() {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
-            <div class="cart-item-img">
-                <img src="${item.image}" alt="${item.name}" width="50" height="50">
-            </div>
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-quantity">
-                <button class="quantity-btn minus-btn" data-index="${index}">-</button>
-                <span class="quantity-display">${item.quantity}</span>
-                <button class="quantity-btn plus-btn" data-index="${index}">+</button>
-            </div>
-            <div class="cart-item-price">€${itemTotal.toFixed(2)}</div>
-            <div class="cart-item-remove">
-                <button class="remove-btn" data-index="${index}">×</button>
+            <div class='cart-item-all-thing">
+                <img class="cart-item-img" src="${item.image}" alt="${item.name}" width="50" height="50">
+                <p class="cart-item-name">${item.name}</p>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn minus-btn" data-index="${index}">-</button>
+                    <span class="quantity-display">${item.quantity}</span>
+                    <button class="quantity-btn plus-btn" data-index="${index}">+</button>
+                </div>
+                <p class="cart-item-price">€${itemTotal.toFixed(2)}</p>
+                <div class="cart-item-remove">
+                    <button class="remove-btn" data-index="${index}">×</button>
+                </div>
             </div>
         `;
         
@@ -865,7 +865,7 @@ function displayCartItems() {
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
             <div class="cart-item-img">
-                <img src="${item.image}" alt="${item.name}" width="60" height="60">
+                <img src="${item.image}" alt="${item.name}">
             </div>
             <div class="cart-item-name">${item.name}</div>
             <div class="cart-item-quantity">
@@ -1020,6 +1020,7 @@ style.textContent =`
         to { opacity: 0; transform: translateX(100%); }
     }
 
+    /* Cart Item Styles - Simple flex layout */
     .cart-item {
         display: flex;
         align-items: center;
@@ -1031,23 +1032,42 @@ style.textContent =`
         border-radius: 15px;
         font-family: 'ABeeZee', sans-serif;
         width: 80%;
+        min-height: 80px;
+        gap: 15px;
+    }
+
+    /* Each section takes equal space */
+    .cart-item-img {
+        flex: 0 0 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .cart-item-img img {
+        width: 60px;
+        height: 60px;
         border-radius: 10px;
         border: 2px solid #000000;
+        object-fit: cover;
     }
 
     .cart-item-name {
         flex: 2;
-        padding: 0 15px;
         font-size: 16px;
+        font-weight: bold;
+        text-align: left;
+        padding: 0 10px;
+        word-break: break-word;
     }
 
     .cart-item-quantity {
+        flex: 1;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
+        min-width: 120px;
     }
 
     .quantity-btn {
@@ -1061,19 +1081,34 @@ style.textContent =`
         display: flex;
         align-items: center;
         justify-content: center;
+        font-family: 'ABeeZee', sans-serif;
+        color: #000000;
+    }
+
+    .quantity-btn:hover {
+        background-color: #8A7755;
     }
 
     .quantity-display {
         min-width: 30px;
         text-align: center;
         font-weight: bold;
+        font-size: 18px;
     }
 
     .cart-item-price {
+        flex: 1;
         font-weight: bold;
-        min-width: 80px;
-        text-align: right;
         font-size: 18px;
+        text-align: center;
+        min-width: 80px;
+    }
+
+    .cart-item-remove {
+        flex: 0 0 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .remove-btn {
@@ -1085,12 +1120,66 @@ style.textContent =`
         color: white;
         font-size: 24px;
         cursor: pointer;
-        margin-left: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-family: 'ABeeZee', sans-serif;
     }
-`
+
+    .remove-btn:hover {
+        background-color: #cc0000;
+    }
+
+    /* Cart Header Styles */
+    .cart-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        margin: 20px auto;
+        background-color: #d3c5b2;
+        border: 4px solid #000000;
+        border-radius: 20px;
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 18px;
+        color: #000000;
+        width: 80%;
+        min-height: 60px;
+        gap: 15px;
+    }
+
+    /* Match header sections with cart item sections */
+    .header-pic {
+        flex: 0 0 60px;
+        text-align: center;
+    }
+
+    .header-item {
+        flex: 2;
+        text-align: left;
+        padding: 0 10px;
+        font-weight: bold;
+    }
+
+    .header-pcs {
+        flex: 1;
+        text-align: center;
+        min-width: 120px;
+        font-weight: bold;
+    }
+
+    .header-price {
+        flex: 1;
+        text-align: center;
+        min-width: 80px;
+        font-weight: bold;
+    }
+
+    .header-btn {
+        flex: 0 0 35px;
+        text-align: center;
+    }
+`;
 
 document.head.appendChild(style);
 
