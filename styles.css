@@ -770,6 +770,7 @@ option{
     }
     header{
         height: auto;
+        width:100%;
         padding: 10px;
     }
     .name-logo {
@@ -784,10 +785,13 @@ option{
         height: 45px;
     }
     .product{
-        margin: auto;
+        margin: 0 auto;
     }
     footer{
         padding: 15px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
     }
     .name-logo-2{
         margin-left: 15px;
