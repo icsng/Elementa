@@ -762,13 +762,14 @@ option{
         flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
-        /* justify-content: space-around; */
         width: 95%;
+        gap: 5px;
+        justify-content: center;
     }
     .menu-all{
         display: flex;
-        /* justify-content: space-around; */
         flex-wrap: wrap;
+        justify-content: center;
     }
     .name-logo {
         width: 100%;
@@ -801,21 +802,21 @@ option{
     }
     .call-me{
         width: 80%;
-        margin-top: auto;
     }
     .c-m-btn{
-        margin: auto;
+        margin: 10px auto;
     }
     .eml{
-        font-size: 10px;
+        font-size: 15px;
     }
     .soc-media{
         display: flex;
         flex-direction: column;
-        font-size: 10px;
+        justify-content: center;
+        font-size: 15px;
     }
     .loc{
-        font-size: 10px;
+        font-size: 15px;
     }
     .contact{
         width: 80%;
@@ -834,19 +835,32 @@ option{
         display: none;
     }
     .cart-item-img{
-        margin: 15px auto;
+        width: 75px;
+        height: 75px;
+        justify-content: center;
+        margin: 10px auto;
     }
     .cart-item-all-thing{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
+        flex-wrap: nowrap;
     }
     .cart-summary{
         margin: 10px auto;
+    }
+    .wtd{
+        font-size: 17px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
     }
     header{
         height: auto;
         width: 100%;
         padding: 10px;
+    }
+    main{
+        margin-top: 50px;
     }
 }
