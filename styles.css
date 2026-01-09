@@ -752,11 +752,6 @@ option{
 
 /* small screen */
 @media (max-width: 860px) {
-    .menu-all {
-      gap: 18px;
-      display: flex;
-      justify-content: space-around;
-    }
     .search-input{
         height: 35px;
         width: 150px;
@@ -766,6 +761,7 @@ option{
         flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         width: 100%;
     }
     header{
@@ -792,6 +788,7 @@ option{
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
     }
     .name-logo-2{
         margin-left: 15px;
