@@ -1020,7 +1020,6 @@ style.textContent =`
         to { opacity: 0; transform: translateX(100%); }
     }
 
-    /* Cart Item Styles - Simple flex layout */
     .cart-item {
         display: flex;
         align-items: center;
@@ -1130,7 +1129,6 @@ style.textContent =`
         background-color: #cc0000;
     }
 
-    /* Cart Header Styles */
     .cart-header {
         display: flex;
         align-items: center;
@@ -1148,7 +1146,6 @@ style.textContent =`
         gap: 15px;
     }
 
-    /* Match header sections with cart item sections */
     .header-pic {
         flex: 0 0 60px;
         text-align: center;
@@ -1183,6 +1180,21 @@ style.textContent =`
 
 document.head.appendChild(style);
 
+// Clear the cart
+function handleOrderSubmission() {
+    const orderForm = document.querySelector('form.contact-form');
+    
+    if (orderForm) {
+        orderForm.addEventListener('submit', function() {
+            cart = [];
+            productQuantities = {};
+            localStorage.removeItem('cart');
+            localStorage.removeItem('productQuantities');
+            
+            console.log('Order submitted - cart cleared');
+        });
+    }
+}
 
 //SEARCH 
 const searchProducts = productCartData.map(product => {
@@ -1806,6 +1818,7 @@ document.head.appendChild(searchStyle);
 
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
+    handleOrderSubmission();
 });
 
 
