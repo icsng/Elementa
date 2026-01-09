@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // CART
 const productCartData = [
     { id: 1, name: "Medusa 3D night light", price: 10.00, image: "product-1.jpg" },
-    { id: 2, name: "Rabbit figure", price: 5.66, image: "prooduct-2.jpg" },
+    { id: 2, name: "Rabbit figure", price: 5.66, image: "product-2.jpg" },
     { id: 3, name: "Doormat with Cats", price: 2.61, image: "product-3.jpg" },
     { id: 4, name: "Painting Mona Lisa", price: 11.88, image: "product-4.jpg" },
     { id: 5, name: "Owl on a stake - Wooden sculpture", price: 113.12, image: "product-5.jpg" },
@@ -1182,6 +1182,627 @@ style.textContent =`
 `;
 
 document.head.appendChild(style);
+
+
+//SEARCH 
+const searchProducts = productCartData.map(product => {
+    const searchProps = {
+        1: {
+            description: "USB cable, Gift packaging, Thorough quality control",
+            category: "lighting",
+            tags: ["medusa", "night light", "3d", "lamp", "decorative lighting"]
+        },
+        2: {
+            description: "Material: polystone, Colour: red, white, brown, Size: 11*9*13 cm",
+            category: "figurines",
+            tags: ["rabbit", "figure", "animal", "polystone", "decor"]
+        },
+        3: {
+            description: "Size: 38 x 58 cm, Material: 89% rubber, 11% polyester",
+            category: "home",
+            tags: ["doormat", "cat", "cats", "mat", "entrance", "home decor"]
+        },
+        4: {
+            description: "Author: Leonardo da Vinci, Genre: Religion, Style: Renaissance, Colour: Yellow, brown",
+            category: "art",
+            tags: ["mona lisa", "painting", "art", "renaissance", "leonardo da vinci"]
+        },
+        5: {
+            description: "Size: height 1200 mm, Production time: 2–4 weeks",
+            category: "sculptures",
+            tags: ["owl", "wooden", "sculpture", "stake", "garden", "outdoor"]
+        },
+        6: {
+            description: "Premium quality and handcrafted, Safe latex paints and eco-friendly materials",
+            category: "art",
+            tags: ["starry night", "painting", "art", "van gogh", "night", "stars"]
+        },
+        7: {
+            description: "Material: rattan, Color: white with glitter, Size: 17 cm",
+            category: "decorations",
+            tags: ["heart", "hanging", "decoration", "rattan", "glitter", "wall decor"]
+        },
+        8: {
+            description: "Size: 11 x 9 x 13 cm",
+            category: "figurines",
+            tags: ["owl", "figure", "decorative", "bird", "animal"]
+        },
+        9: {
+            description: "Size: 50x25 cm",
+            category: "wall decor",
+            tags: ["blue sea", "wave", "wall decor", "sea", "ocean", "blue"]
+        },
+        10: {
+            description: "With wooden base, Size: 60mm diameter",
+            category: "figurines",
+            tags: ["crystal ball", "cat", "3d", "ball", "magic", "decorative"]
+        },
+        11: {
+            description: "Size: 17 cm",
+            category: "figurines",
+            tags: ["owl", "figure", "bird", "animal", "decorative"]
+        },
+        12: {
+            description: "Retains its appearance for up to 5-7 years, Size: 10.5 cm * 9 cm",
+            category: "plants",
+            tags: ["florarium", "nature", "plants", "terrarium", "indoor plants"]
+        }
+    };
+    
+    return {
+        ...product,
+        description: searchProps[product.id]?.description || "",
+        category: searchProps[product.id]?.category || "uncategorized",
+        tags: searchProps[product.id]?.tags || []
+    };
+});
+
+function performSearch(searchTerm) {
+    if (!searchTerm || searchTerm.trim() === '') {
+        return [];
+    }
+    
+    const term = searchTerm.toLowerCase().trim();
+    const results = [];
+    
+    searchProducts.forEach(product => {
+        let score = 0;
+        
+        if (product.name.toLowerCase().includes(term)) {
+            score += 100;
+        }
+        
+        if (product.description.toLowerCase().includes(term)) {
+            score += 50;
+        }
+        
+        product.tags.forEach(tag => {
+            if (tag.toLowerCase().includes(term)) {
+                score += 30;
+            }
+        });
+        
+        if (product.category.toLowerCase().includes(term)) {
+            score += 20;
+        }
+        
+        if (score > 0) {
+            results.push({
+                ...product,
+                score: score
+            });
+        }
+    });
+    
+    results.sort((a, b) => b.score - a.score);
+    
+    return results;
+}
+
+function displaySearchResults(results) {
+    const resultsContainer = document.querySelector('.results-list');
+    const noResultsDiv = document.querySelector('.no-results');
+    
+    if (!resultsContainer || !noResultsDiv) {
+        return;
+    }
+    
+    resultsContainer.innerHTML = '';
+    
+    if (results.length === 0) {
+        noResultsDiv.style.display = 'block';
+        return;
+    }
+    
+    noResultsDiv.style.display = 'none';
+    
+    results.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'product pr-' + product.id;
+        productElement.innerHTML = `
+            <div class="card card-${product.id}">
+                <div class="flip-container">
+                    <div class="flip-front">
+                        <img src="product-${product.id}.jpg" alt="${product.name}" class="photo">
+                    </div>
+                    <div class="flip-back">
+                        <p class="product-name">${product.name}</p>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-price">€${product.price.toFixed(2)}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-all">
+                <button class="btn minus add clicked m-${product.id} clicked-${product.id}">-</button>
+                <button class="cart-btn btn cart-${product.id}">
+                    <img src="cart.png" class="cart-img">
+                </button>
+                <button class="btn plus add clicked clicked-${product.id} pl-${product.id}">+</button>
+            </div>
+        `;
+        
+        const flipContainer = productElement.querySelector('.flip-container');
+        const card = productElement.querySelector('.card');
+        
+        if (flipContainer && card) {
+            card.addEventListener('mouseenter', function () {
+                flipContainer.style.transform = "rotateY(180deg)";
+            });
+            
+            card.addEventListener('mouseleave', function () {
+                flipContainer.style.transform = "rotateY(0deg)";
+            });
+        }
+        
+        const cartBtn = productElement.querySelector('.cart-btn');
+        const plusBtn = productElement.querySelector('.plus');
+        const minusBtn = productElement.querySelector('.minus');
+        
+        cartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleCartButtonClick(product.id);
+        });
+        
+        plusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const currentQuantity = productQuantities[product.id] || 0;
+            const newQuantity = currentQuantity + 1;
+            productQuantities[product.id] = newQuantity;
+            localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
+            updateProductDisplay(product.id, newQuantity);
+            updateCartQuantity(product.id, newQuantity);
+        });
+        
+        minusBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const currentQuantity = productQuantities[product.id] || 0;
+            if (currentQuantity <= 1) {
+                productQuantities[product.id] = 0;
+                localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
+                updateProductDisplay(product.id, 0);
+                removeProductFromCart(product.id);
+            } else {
+                const newQuantity = currentQuantity - 1;
+                productQuantities[product.id] = newQuantity;
+                localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
+                updateProductDisplay(product.id, newQuantity);
+                updateCartQuantity(product.id, newQuantity);
+            }
+        });
+        
+        resultsContainer.appendChild(productElement);
+    });
+    
+    results.forEach(product => {
+        const quantity = productQuantities[product.id] || 0;
+        updateProductDisplay(product.id, quantity);
+    });
+}
+
+function getSearchTermFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('q') || '';
+}
+
+function initializeSearchResults() {
+    if (!window.location.pathname.includes('search-result.html')) {
+        return;
+    }
+    
+    let searchTerm = getSearchTermFromURL();
+    
+    if (!searchTerm) {
+        searchTerm = localStorage.getItem('lastSearch') || '';
+        localStorage.removeItem('lastSearch');
+    }
+    
+    if (!searchTerm) {
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput && searchInput.value) {
+            searchTerm = searchInput.value;
+        }
+    }
+    
+    const results = performSearch(searchTerm);
+    
+    displaySearchResults(results);
+}
+
+function handleSearchFormSubmission() {
+    const searchForms = document.querySelectorAll('form.search');
+    
+    searchForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const searchInput = this.querySelector('.search-input');
+            const searchTerm = searchInput ? searchInput.value.trim() : '';
+            
+            if (searchTerm) {
+                localStorage.setItem('lastSearch', searchTerm);
+                this.submit();
+            } else {
+                localStorage.setItem('lastSearch', '');
+                this.submit();
+            }
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    handleSearchFormSubmission();
+    initializeSearchResults();
+    
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+        const storedSearch = localStorage.getItem('lastSearch');
+        if (storedSearch) {
+            searchInput.value = storedSearch;
+        }
+    }
+});
+
+const searchStyle = document.createElement('style');
+searchStyle.textContent = `
+    .search-result {
+        margin: 20px;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .search-results-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 60vh;
+        padding: 20px;
+    }
+    
+    .results-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .no-results {
+        background-color: #D2BD96;
+        border: 3px solid #000000;
+        box-shadow: 0 2px 0 #000000;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 40px auto;
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 18px;
+        color: #000000;
+        text-align: center;
+        width: 80%;
+        max-width: 500px;
+    }
+    
+    .search-results-header {
+        text-align: center;
+        margin: 30px auto;
+    }
+    
+    .no-more {
+        text-align: center;
+        margin: 30px auto;
+    }
+    
+    .back-to-shop {
+        text-align: center;
+        margin: 30px auto;
+    }
+    
+    .back-btn {
+        font-family: 'ABeeZee', sans-serif;
+        color: #000;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .back-btn:hover {
+        color: #666;
+    }
+    
+    .search-results-container .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #d3c5b2;
+        border-radius: 20px;
+        margin: 25px;
+        border: 4px solid #000000;
+        padding-bottom: 15px;
+        box-shadow: 0 2px 0 #000000;
+        width: 275px;
+    }
+    
+    .search-results-container .product .card {
+        width: 225px;
+        height: 225px;
+        margin: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .search-results-container .product .btn-all {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 30px;
+        margin: 15px auto;
+        background-color: #EEE9E1;
+        border: 3px solid #000000;
+        border-radius: 20px;
+        font-family: 'ABeeZee', sans-serif;
+        width: 80%;
+        min-height: 100px;
+        gap: 25px;
+    }
+    
+    .cart-item-img {
+        flex: 0 0 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+    
+    .cart-item-img img {
+        width: 80px;
+        height: 80px;
+        border-radius: 15px;
+        border: 3px solid #000000;
+        object-fit: cover;
+        padding: 5px;
+        background-color: white;
+    }
+    
+    .cart-item-name {
+        flex: 2;
+        font-size: 17px;
+        font-weight: bold;
+        text-align: left;
+        padding: 0 15px;
+        word-break: break-word;
+        line-height: 1.4;
+    }
+    
+    .cart-item-quantity {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        min-width: 140px;
+    }
+    
+    .quantity-btn {
+        width: 35px;
+        height: 35px;
+        border: 3px solid #000000;
+        border-radius: 50%;
+        background-color: #9D8A66;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'ABeeZee', sans-serif;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .quantity-btn:hover {
+        background-color: #8A7755;
+    }
+    
+    .quantity-display {
+        min-width: 40px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    
+    .cart-item-price {
+        flex: 1;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        min-width: 100px;
+    }
+    
+    .cart-item-remove {
+        flex: 0 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .remove-btn {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #000000;
+        border-radius: 50%;
+        background-color: #ff4444;
+        color: white;
+        font-size: 26px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'ABeeZee', sans-serif;
+        font-weight: bold;
+    }
+    
+    .remove-btn:hover {
+        background-color: #cc0000;
+    }
+    
+    .cart-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 30px;
+        margin: 25px auto;
+        background-color: #d3c5b2;
+        border: 4px solid #000000;
+        border-radius: 20px;
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 20px;
+        color: #000000;
+        width: 80%;
+        min-height: 70px;
+        gap: 25px;
+        font-weight: bold;
+    }
+    
+    .header-pic {
+        flex: 0 0 80px;
+        text-align: center;
+        margin-right: 15px;
+    }
+    
+    .header-item {
+        flex: 2;
+        text-align: left;
+        padding: 0 15px;
+        font-weight: bold;
+    }
+    
+    .header-pcs {
+        flex: 1;
+        text-align: center;
+        min-width: 140px;
+        font-weight: bold;
+    }
+    
+    .header-price {
+        flex: 1;
+        text-align: center;
+        min-width: 100px;
+        font-weight: bold;
+    }
+    
+    .header-btn {
+        flex: 0 0 40px;
+        text-align: center;
+    }
+    
+    @media (max-width: 860px) {
+        .cart-item {
+            width: 95%;
+            padding: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .cart-item-img {
+            flex: 0 0 70px;
+            margin-right: 10px;
+        }
+        
+        .cart-item-img img {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .cart-item-name {
+            flex: 1 1 100%;
+            order: 1;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .cart-item-quantity {
+            flex: 1;
+            order: 2;
+            margin-top: 10px;
+        }
+        
+        .cart-item-price {
+            flex: 1;
+            order: 3;
+            margin-top: 10px;
+        }
+        
+        .cart-item-remove {
+            flex: 0 0 35px;
+            order: 4;
+            margin-top: 10px;
+        }
+        
+        .cart-header {
+            width: 95%;
+            padding: 15px;
+            gap: 15px;
+            font-size: 16px;
+        }
+        
+        .header-pic {
+            flex: 0 0 70px;
+            margin-right: 10px;
+        }
+        
+        .header-pcs {
+            min-width: 120px;
+        }
+        
+        .search-results-container .product {
+            margin: 15px;
+        }
+        
+        .search-results-container .product .card {
+            margin: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .search-results-container .product .btn-all {
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+    }
+`;
+
+document.head.appendChild(searchStyle);
 
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
