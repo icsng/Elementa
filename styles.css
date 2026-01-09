@@ -752,7 +752,7 @@ option{
 
 /* small screen */
 
-/* @media (max-width: 860px) {
+@media (max-width: 860px) {
     .search-input{
         height: 35px;
         width: 150px;
@@ -822,9 +822,9 @@ option{
     main {
         margin-top: calc(100px + 10vh);
     }
-} */
+}
 
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     .search-input {
         height: 35px;
         width: 150px;
@@ -997,4 +997,4 @@ option{
         width: 100%;
         margin: 10px 0;
     }
-}
+} */
