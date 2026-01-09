@@ -755,6 +755,7 @@ option{
     .search-input{
         height: 35px;
         width: 150px;
+        background-color: #000;
     }
     .menu_all{
         display: flex;
