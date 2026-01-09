@@ -756,7 +756,6 @@ option{
     .search-input{
         height: 35px;
         width: 150px;
-        background-color: #000;
     }
     .menu_all{
         display: flex;
@@ -802,6 +801,21 @@ option{
     }
     .call-me{
         width: 80%;
+        margin-top: auto;
+    }
+    .c-m-btn{
+        margin: auto;
+    }
+    .eml{
+        font-size: 10px;
+    }
+    .soc-media{
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+    }
+    .loc{
+        font-size: 10px;
     }
     .contact{
         width: 80%;
@@ -817,184 +831,20 @@ option{
         min-height: 80px;
     }
     .cart-header{
-        width: 95%;
+        display: none;
     }
-    main {
-        margin-top: calc(100px + 10vh);
-    }
-}
-
-/* @media (max-width: 860px) {
-    .search-input {
-        height: 35px;
-        width: 150px;
-    }
-    
-    .menu_all {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        width: 100%;
-        padding: 10px 0;
-        gap: 15px;
-    }
-    
-    header {
-        height: auto;
-        width: 100%;
-        padding: 10px;
-        min-height: 140px;
-    }
-    
-    .name-logo {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    
-    .logo {
-        width: 75px;
-        height: 75px;
-    }
-    
-    .title {
-        height: 45px;
-        margin: 20px auto 15px auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .products {
-        gap: 25px; 
-        padding: 0 10px;
-    }
-    
-    .product {
-        margin: 0 auto;
-        width: calc(50% - 20px);
-        max-width: 275px;
-    }
-    
-    footer {
-        padding: 15px;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        margin-top: 30px;
-    }
-    
-    .name-logo-2 {
-        margin-left: 15px;
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 15px;
-    }
-    
-    .by {
-        margin-top: 20px;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .call-me {
-        width: 90%;
-        max-width: 400px;
-        margin: 25px auto;
-    }
-    
-    .contact {
-        width: 90%;
-        max-width: 400px;
+    .cart-item-img{
         margin: 15px auto;
     }
-    
-    .s-m-con {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .name-logo-subm {
-        width: 100%;
-        justify-content: center;
-        height: auto;
-        min-height: 80px;
-        padding: 10px 0;
-    }
-    
-    .cart-header {
-        width: 95%;
-        font-size: 14px;
-        padding: 10px 15px;
-    }
-    
-    .cart-item {
-        width: 95%;
-        padding: 15px;
-        font-size: 14px;
-    }
-    
-    main {
-        margin-top: 160px;
-        padding: 0 10px;
-        min-height: calc(100vh - 300px); 
-    }
-    
-    .menu-all {
-        width: 100%;
-        justify-content: center;
-        gap: 20px;
-    }
-    
-    .menu {
-        font-size: 18px; 
-    }
-    
-    .brand-text {
-        text-align: center;
-    }
-    
-    .name {
-        font-size: 32px;
-    }
-    
-    .second-name {
-        font-size: 16px; 
-    }
-    
-    .cart-container {
-        padding: 10px;
-    }
-    
-    .cart-item-img img {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .cart-item-name {
-        font-size: 13px;
-    }
-    
-    .search-results-container .product {
-        width: 100%;
-        max-width: 275px;
-    }
-    
-    .contact-form {
-        padding: 0 10px;
-    }
-    
-    .info {
+    .cart-item-all-thing{
+        display: flex;
         flex-direction: column;
-        padding: 15px;
+        justify-content: center;
     }
-    
-    .contact-info, .address-info {
-        width: 100%;
-        margin: 10px 0;
+    .cart-summary{
+        margin: 10px auto;
     }
-} */
+    /* main {
+        margin-top: calc(100px + 10vh);
+    } */
+}
