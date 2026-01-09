@@ -762,13 +762,13 @@ option{
         flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
-        width: 100%;
+        /* justify-content: space-around; */
+        width: 95%;
     }
-    header{
-        height: auto;
-        width:100%;
-        padding: 10px;
+    .menu-all{
+        display: flex;
+        /* justify-content: space-around; */
+        flex-wrap: wrap;
     }
     .name-logo {
         width: 100%;
@@ -785,7 +785,7 @@ option{
         margin: 0 auto;
     }
     footer{
-        padding: 15px;
+        padding: 10px;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
@@ -844,7 +844,9 @@ option{
     .cart-summary{
         margin: 10px auto;
     }
-    /* main {
-        margin-top: calc(100px + 10vh);
-    } */
+    header{
+        height: auto;
+        width: 100%;
+        padding: 10px;
+    }
 }
