@@ -597,10 +597,6 @@ option{
     width: 375px;
 }
 
-.no-results{
-    display: none;
-}
-
 .search-results-header{
     background-color: #D2BD96;
     border: 3px solid #000000;  
