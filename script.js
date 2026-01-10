@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Painting Mona Lisa",
             description: [
                 "- Author: Leonardo da Vinci",
-                "- Genre: Religion",
                 "- Style: Renaissance",
                 "- Colour: Yellow, brown"
             ],
@@ -1503,7 +1502,6 @@ searchStyle.textContent = `
         justify-content: center;
         gap: 40px;
         width: 100%;
-        max-width: 1200px;
         margin: 0 auto;
     }
     
@@ -1546,31 +1544,40 @@ searchStyle.textContent = `
         transition: all 0.3s ease;
     }
     
-    .back-btn:hover {
-        color: #666;
-    }
-    
     .search-results-container .product {
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: #d3c5b2;
         border-radius: 20px;
+        padding: 25px;
         margin: 25px;
         border: 4px solid #000000;
         padding-bottom: 15px;
         box-shadow: 0 2px 0 #000000;
-        width: 275px;
+        width: 325px;
     }
     
     .search-results-container .product .card {
+        width: 275px;
+        height: 275px;
+        margin-bottom: 10px;
+        padding: 20px;
+        background-color: #D2BD96;
+        border: 4px solid #000000;
+        box-shadow: 0 2px 0 #000000;
+        border-radius: 20px;
+    }
+    
+    .search-results-container .product .flip-front .photo {
         width: 225px;
         height: 225px;
-        margin: 20px;
-        margin-bottom: 10px;
+        border: 4px solid #000000;
+        border-radius: 20px;
     }
     
     .search-results-container .product .btn-all {
+        margin: 10px;
         margin-top: 15px;
         margin-bottom: 10px;
     }
@@ -1643,10 +1650,6 @@ searchStyle.textContent = `
         font-weight: bold;
     }
     
-    .quantity-btn:hover {
-        background-color: #8A7755;
-    }
-    
     .quantity-display {
         min-width: 40px;
         text-align: center;
@@ -1683,10 +1686,6 @@ searchStyle.textContent = `
         justify-content: center;
         font-family: 'ABeeZee', sans-serif;
         font-weight: bold;
-    }
-    
-    .remove-btn:hover {
-        background-color: #cc0000;
     }
     
     .cart-header {
