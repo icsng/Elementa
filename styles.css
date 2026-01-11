@@ -905,8 +905,8 @@ option{
     }
     
     .cart-item-img {
-        width: 110px;
-        height: 110px;
+        /* width: 110px;
+        height: 110px; */
 
         display: flex;
         justify-content: center;
