@@ -796,8 +796,9 @@ option{
         margin: 10px auto;
         width: 90%;
         max-width: 350px;
-        padding: 0;
-        margin: 15px auto;
+        padding: 20px;
+        padding-bottom: 15px;
+        margin: 20px auto;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -807,7 +808,6 @@ option{
         width: 280px;
         height: 280px;
         margin: 0;
-        margin-bottom: 0;
         padding: 15px;
     }
     
@@ -1039,8 +1039,11 @@ option{
         width: 90%;
         max-width: 350px;
         margin: 20px auto;
-        padding: 0;
+        padding: 20px;
         padding-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .cart-actions {
@@ -1086,8 +1089,8 @@ option{
     }
     
     .btn-all {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
         gap: 10px;
         padding: 0 15px;
         width: 100%;
@@ -1124,7 +1127,6 @@ option{
         width: 280px;
         height: 280px;
         margin: 0;
-        margin-bottom: 0;
         padding: 15px;
     }
     
