@@ -757,6 +757,7 @@ option{
         left: 0;
         z-index: 1000;
         transition: transform 0.3s ease-in-out;
+        border: 2px solid #000000;
     }
     
     header.hide {
