@@ -795,19 +795,23 @@ option{
     .product {
         margin: 10px auto;
         width: 90%;
-        max-width: 300px;
+        max-width: 350px;
+        padding: 20px;
+        padding-bottom: 15px;
+        margin: 20px auto;
     }
     
     .card {
-        width: 250px;
-        height: 250px;
+        width: 300px;
+        height: 300px;
         margin: 15px;
         margin-bottom: 10px;
+        padding: 15px;
     }
     
     .photo {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
     }
     
     footer {
@@ -890,53 +894,104 @@ option{
     
     .cart-item {
         flex-direction: column;
-        align-items: center;
         width: 90%;
-        padding: 20px;
+        padding: 15px;
         gap: 15px;
-        text-align: center;
+        align-items: center;
     }
     
     .cart-item > div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
-    .cart-item-img,
-    .cart-it-img,
-    .cart-item img,
-    .cart-item-img img {
-        display: block;
-        margin: 0 auto 15px auto;
-        width: 100px !important;
-        height: 100px !important;
+    .cart-item-img {
+        width: 100%;
+        justify-content: center !important;
+        margin: 10px 0;
+    }
+    
+    .cart-it-img {
+        width: 100px;
+        height: 100px;
         object-fit: cover;
+        border-radius: 10px;
+        border: 3px solid #000000;
+        margin: 0 auto;
     }
     
     .cart-item-name {
         text-align: center;
+        padding: 0 5px;
         margin: 10px 0;
-        width: 100%;
+        font-size: 16px;
+        line-height: 1.3;
     }
     
     .cart-item-quantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
         margin: 10px 0;
         width: 100%;
-        justify-content: center;
     }
     
     .cart-item-price {
         text-align: center;
         margin: 10px 0;
-        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
     }
     
     .cart-item-remove {
         margin: 10px 0;
         width: 100%;
         justify-content: center;
+    }
+    
+    .cart-item-all-thing {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .cart-item .cart-item-quantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+    
+    .cart-item .quantity-btn {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        flex-shrink: 0;
+    }
+    
+    .cart-item .quantity-display {
+        min-width: 40px;
+        text-align: center;
+    }
+    
+    .cart-item-img {
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .cart-item-img img {
+        display: block;
+        margin: 0 auto;
     }
     
     .cart-summary {
@@ -980,8 +1035,10 @@ option{
     
     .search-results-container .product {
         width: 90%;
-        max-width: 300px;
-        margin: 15px auto;
+        max-width: 350px;
+        margin: 20px auto;
+        padding: 20px;
+        padding-bottom: 15px;
     }
     
     .cart-actions {
@@ -1028,5 +1085,70 @@ option{
     
     .btn-all {
         margin-top: 15px;
+        margin-bottom: 15px;
+        gap: 10px;
+        padding: 0 15px;
+    }
+    
+    .cart-btn {
+        width: 95px;
+        height: 45px;
+    }
+    
+    .minus.add, .plus.add {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .flip-container {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flip-front, .flip-back {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flip-front img.photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .search-results-container .card {
+        width: 300px;
+        height: 300px;
+        margin: 15px;
+        margin-bottom: 10px;
+        padding: 15px;
+    }
+    
+    .search-results-container .photo {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .flip-back {
+        padding: 10px;
+        overflow-y: auto;
+    }
+    
+    .product-name {
+        font-size: 18px;
+        margin-bottom: 5px;
+        line-height: 1.2;
+    }
+    
+    .product-description {
+        font-size: 13px;
+        margin: 3px 0;
+        line-height: 1.2;
+        padding-left: 5px;
+    }
+    
+    .product-price {
+        font-size: 20px;
+        margin-top: 5px;
     }
 }
