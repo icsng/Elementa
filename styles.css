@@ -894,6 +894,60 @@ option{
         width: 90%;
         padding: 15px;
         gap: 15px;
+        align-items: center;
+    }
+    
+    .cart-item > div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cart-item-img {
+        width: 100%;
+        justify-content: center !important;
+        margin: 10px 0;
+    }
+    
+    .cart-it-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 3px solid #000000;
+        margin: 0 auto;
+    }
+    
+    .cart-item-name {
+        text-align: center;
+        padding: 0 5px;
+        margin: 10px 0;
+        font-size: 16px;
+        line-height: 1.3;
+    }
+    
+    .cart-item-quantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .cart-item-price {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .cart-item-remove {
+        margin: 10px 0;
+        width: 100%;
+        justify-content: center;
     }
     
     .cart-item-all-thing {
@@ -904,29 +958,37 @@ option{
         width: 100%;
     }
     
-    .cart-item-img {
-        width: 110px;
-        height: 110px;
-
+    .cart-item .cart-item-quantity {
         display: flex;
-        justify-content: center !important;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
-        margin: 10px auto;
+        gap: 15px;
+        flex-wrap: nowrap;
     }
     
-    .cart-it-img{
-        width: 100px;
-        height: 100px;
-
+    .cart-item .quantity-btn {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        flex-shrink: 0;
+    }
+    
+    .cart-item .quantity-display {
+        min-width: 40px;
+        text-align: center;
+    }
+    
+    .cart-item-img {
         display: flex;
         justify-content: center !important;
         align-items: center;
-        margin: 10px auto;
+        width: 100%;
     }
-
+    
     .cart-item-img img {
-        width: 80px;
-        height: 80px;
+        display: block;
+        margin: 0 auto;
     }
     
     .cart-summary {
@@ -1016,7 +1078,7 @@ option{
         width: 180px;
     }
     
-    .btn-all{
+    .btn-all {
         margin-top: 15px;
     }
 } */
@@ -1069,19 +1131,23 @@ option{
     .product {
         margin: 10px auto;
         width: 90%;
-        max-width: 300px;
+        max-width: 325px;
+        padding: 25px;
+        padding-bottom: 15px;
+        margin: 25px auto;
     }
     
     .card {
-        width: 250px;
-        height: 250px;
-        margin: 15px;
+        width: 275px;
+        height: 275px;
+        margin: 20px;
         margin-bottom: 10px;
+        padding: 20px;
     }
     
     .photo {
-        width: 200px;
-        height: 200px;
+        width: 225px;
+        height: 225px;
     }
     
     footer {
@@ -1305,8 +1371,10 @@ option{
     
     .search-results-container .product {
         width: 90%;
-        max-width: 300px;
-        margin: 15px auto;
+        max-width: 325px;
+        margin: 25px auto;
+        padding: 25px;
+        padding-bottom: 15px;
     }
     
     .cart-actions {
@@ -1353,5 +1421,47 @@ option{
     
     .btn-all {
         margin-top: 15px;
+        margin-bottom: 15px;
+        gap: 10px;
+        padding: 0 15px;
+    }
+    
+    .cart-btn {
+        width: 95px;
+        height: 45px;
+    }
+    
+    .minus.add, .plus.add {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .flip-container {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flip-front, .flip-back {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flip-front img.photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .search-results-container .card {
+        width: 275px;
+        height: 275px;
+        margin: 20px;
+        margin-bottom: 10px;
+        padding: 20px;
+    }
+    
+    .search-results-container .photo {
+        width: 225px;
+        height: 225px;
     }
 }
