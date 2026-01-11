@@ -1174,8 +1174,9 @@ option{
 @media (max-width: 860px) {
     header {
         height: auto;
+        min-height: 120px;
         width: 100%;
-        padding: 10px;
+        padding: 5px;
         position: fixed;
         top: 0;
         left: 0;
@@ -1189,7 +1190,7 @@ option{
     }
     
     main {
-        margin-top: 100px !important;
+        margin-top: 130px;
         padding: 10px;
         transition: margin-top 0.3s ease-in-out;
     }
@@ -1207,26 +1208,35 @@ option{
         width: 100%;
         gap: 5px;
         justify-content: center;
-        padding: 10px;
+        padding: 5px;
     }
     
     .menu-all {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
-        padding: 10px 0;
+        gap: 15px;
+        padding: 5px 0;
     }
     
     .name-logo {
         width: 100%;
         justify-content: center;
         text-align: center;
+        padding: 5px 0;
     }
     
     .logo {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .name {
+        font-size: 30px;
+    }
+    
+    .second-name {
+        font-size: 16px;
     }
     
     .title {
@@ -1510,8 +1520,8 @@ option{
     }
     
     .menu {
-        font-size: 18px;
-        padding: 5px 10px;
+        font-size: 16px;
+        padding: 3px 8px;
     }
     
     .search {
@@ -1521,6 +1531,8 @@ option{
     
     .search-input {
         width: 180px;
+        height: 30px;
+        font-size: 14px;
     }
     
     .btn-all {
