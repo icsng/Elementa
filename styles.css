@@ -748,7 +748,7 @@ option{
 
 /* small screen */
 
-/* @media (max-width: 860px) {
+@media (max-width: 860px) {
     .search-input {
         height: 35px;
         width: 150px;
@@ -1001,9 +1001,9 @@ option{
     .search-input {
         width: 180px;
     }
-} */
+}
 
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     .search-input {
         height: 35px;
         width: 150px;
@@ -1291,4 +1291,4 @@ option{
     .search-input {
         width: 180px;
     }
-}
+} */
