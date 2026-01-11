@@ -37,10 +37,13 @@
 
     <main>
         <div class="call-me">
-            <p class="q">You have any questions?</p>
-            <p class="q">We call you!</p>
-            <input type="tel" class="phone c-m" placeholder="Your phone number">
-            <button class="c-m-btn c-m">Call me ☎</button>
+            <form>
+                <p class="q">You have any questions?</p>
+                <p class="q">We call you!</p>
+                <input type="tel" class="phone c-m" placeholder="Your phone number"  pattern="[\+\d\s\-\(\)]{10,20}" required>
+                <button class="c-m-btn c-m" type="submit" onclick="alert('Expect a call within a week.')">Call me ☎</button>
+            </form>
+            
         </div>
 
         <div class="contacts">
