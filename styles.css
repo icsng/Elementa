@@ -914,10 +914,19 @@ option{
         margin: 10px auto;
     }
     
+    .cart-it-img{
+        width: 100px;
+        height: 100px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+    }
+
     .cart-item-img img {
         width: 80px;
         height: 80px;
-        object-fit: contain;
     }
     
     .cart-summary {
@@ -943,7 +952,7 @@ option{
     }
     
     main {
-        margin-top: 20px;
+        margin-top: 15px;
         padding: 10px;
     }
     

@@ -1055,7 +1055,7 @@ function displayCartItems() {
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
             <div class="cart-item-img">
-                <img src="${item.image}" alt="${item.name}">
+                <img class="cart-it-img" src="${item.image}" alt="${item.name}">
             </div>
             <div class="cart-item-name">${item.name}</div>
             <div class="cart-item-quantity">
