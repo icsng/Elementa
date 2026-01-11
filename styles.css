@@ -795,25 +795,26 @@ option{
     .product {
         margin: 10px auto;
         width: 90%;
-        max-width: 350px;
-        padding: 20px;
-        padding-bottom: 15px;
-        margin: 20px auto;
+        max-width: 320px;
+        padding: 15px;
+        padding-bottom: 10px;
+        margin: 15px auto;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     
     .card {
-        width: 280px;
-        height: 280px;
+        width: 260px;
+        height: 260px;
         margin: 0;
+        margin-top: 10px;
         padding: 15px;
     }
     
     .photo {
-        width: 240px;
-        height: 240px;
+        width: 220px;
+        height: 220px;
     }
     
     footer {
@@ -1037,10 +1038,10 @@ option{
     
     .search-results-container .product {
         width: 90%;
-        max-width: 350px;
-        margin: 20px auto;
-        padding: 20px;
-        padding-bottom: 15px;
+        max-width: 320px;
+        margin: 15px auto;
+        padding: 15px;
+        padding-bottom: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1090,7 +1091,7 @@ option{
     
     .btn-all {
         margin-top: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         gap: 10px;
         padding: 0 15px;
         width: 100%;
@@ -1124,15 +1125,16 @@ option{
     }
     
     .search-results-container .card {
-        width: 280px;
-        height: 280px;
+        width: 260px;
+        height: 260px;
         margin: 0;
+        margin-top: 10px;
         padding: 15px;
     }
     
     .search-results-container .photo {
-        width: 240px;
-        height: 240px;
+        width: 220px;
+        height: 220px;
     }
     
     .flip-back {
