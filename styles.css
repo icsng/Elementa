@@ -907,14 +907,14 @@ option{
     .cart-item-img {
         width: 100px;
         height: 100px;
+        display: flex;
         justify-content: center;
         margin: 10px auto;
     }
     
     .cart-item-img img {
-        width: 100px;
-        height: 100px;
-        margin: 5px auto;
+        width: 80px;
+        height: 80px;
     }
     
     .cart-summary {
@@ -940,7 +940,7 @@ option{
     }
     
     main {
-        margin-top: 100px;
+        margin-top: 50px;
         padding: 10px;
     }
     
@@ -1002,5 +1002,9 @@ option{
     
     .search-input {
         width: 180px;
+    }
+    
+    .btn-all{
+        margin-top: 15px;
     }
 }
