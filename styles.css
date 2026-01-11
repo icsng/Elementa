@@ -747,7 +747,7 @@ option{
 }
 
 /* small screen */
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     .search-input {
         height: 35px;
         width: 150px;
@@ -1022,6 +1022,429 @@ option{
     main {
         margin-top: 15px;
         padding: 10px;
+    }
+    
+    .info {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .contact-info, 
+    .address-info {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+    }
+    
+    .search-results-container .product {
+        width: 90%;
+        max-width: 320px;
+        margin: 15px auto;
+        padding: 15px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cart-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .buy-btn {
+        padding: 12px 30px;
+        font-size: 20px;
+        width: 90%;
+        max-width: 200px;
+    }
+    
+    .cart-container {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .sub-btn {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .subm-btn {
+        width: 200px;
+        margin: 5px 0;
+    }
+    
+    .menu {
+        font-size: 18px;
+        padding: 5px 10px;
+    }
+    
+    .search {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .search-input {
+        width: 180px;
+    }
+    
+    .btn-all {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        gap: 10px;
+        padding: 0 15px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .cart-btn {
+        width: 95px;
+        height: 45px;
+    }
+    
+    .minus.add, .plus.add {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .flip-container {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flip-front, .flip-back {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flip-front img.photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .search-results-container .card {
+        width: 260px;
+        height: 260px;
+        margin: 0;
+        margin-top: 10px;
+        padding: 15px;
+    }
+    
+    .search-results-container .photo {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .flip-back {
+        padding: 10px;
+        overflow-y: auto;
+    }
+    
+    .product-name {
+        font-size: 18px;
+        margin-bottom: 5px;
+        line-height: 1.2;
+    }
+    
+    .product-description {
+        font-size: 13px;
+        margin: 3px 0;
+        line-height: 1.2;
+        padding-left: 5px;
+    }
+    
+    .product-price {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+} */
+
+@media (max-width: 860px) {
+    header {
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    header.hide {
+        transform: translateY(-100%);
+    }
+    
+    main {
+        margin-top: 15px;
+        padding: 10px;
+        transition: margin-top 0.3s ease-in-out;
+    }
+    
+    .search-input {
+        height: 35px;
+        width: 150px;
+    }
+    
+    .menu_all {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 5px;
+        justify-content: center;
+        padding: 10px;
+    }
+    
+    .menu-all {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 10px 0;
+    }
+    
+    .name-logo {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .title {
+        height: 45px;
+        width: 150px;
+    }
+    
+    .t-t {
+        font-size: 20px;
+    }
+    
+    .product {
+        margin: 10px auto;
+        width: 90%;
+        max-width: 320px;
+        padding: 15px;
+        padding-bottom: 10px;
+        margin: 15px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card {
+        width: 260px;
+        height: 260px;
+        margin: 0;
+        margin-top: 10px;
+        padding: 15px;
+    }
+    
+    .photo {
+        width: 220px;
+        height: 220px;
+    }
+    
+    footer {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .foot {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .name-logo-2 {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .by {
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .call-me {
+        width: 90%;
+        margin: 25px auto;
+        padding: 20px;
+    }
+    
+    .c-m-btn {
+        margin: 10px auto;
+        width: 100%;
+    }
+    
+    .eml {
+        font-size: 15px;
+        word-break: break-all;
+    }
+    
+    .soc-media {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        gap: 10px;
+    }
+    
+    .loc {
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .contact {
+        width: 90%;
+        margin: 15px auto;
+        padding: 20px;
+    }
+    
+    .s-m-con {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .name-logo-subm {
+        width: 100%;
+        justify-content: center;
+        height: auto;
+        min-height: 80px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cart-header {
+        display: none !important;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        width: 90%;
+        padding: 15px;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .cart-item > div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cart-item-img {
+        width: 100%;
+        justify-content: center !important;
+        margin: 10px 0;
+    }
+    
+    .cart-it-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 3px solid #000000;
+        margin: 0 auto;
+    }
+    
+    .cart-item-name {
+        text-align: center;
+        padding: 0 5px;
+        margin: 10px 0;
+        font-size: 16px;
+        line-height: 1.3;
+    }
+    
+    .cart-item-quantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .cart-item-price {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .cart-item-remove {
+        margin: 10px 0;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .cart-item-all-thing {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .cart-item .cart-item-quantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+    
+    .cart-item .quantity-btn {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        flex-shrink: 0;
+    }
+    
+    .cart-item .quantity-display {
+        min-width: 40px;
+        text-align: center;
+    }
+    
+    .cart-item-img {
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .cart-item-img img {
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .cart-summary {
+        margin: 10px auto;
+        text-align: center;
+    }
+    
+    .wtd {
+        width: 90%;
+        font-size: 17px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px;
     }
     
     .info {

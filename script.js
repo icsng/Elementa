@@ -474,6 +474,7 @@ function handleHeaderScroll() {
     
     if (scrollTop === 0) {
         header.classList.remove('hide');
+        adjustMainMargin();
         return;
     }
 
@@ -485,24 +486,33 @@ function handleHeaderScroll() {
     }
     
     lastScrollTop = scrollTop;
+    adjustMainMargin();
 }
 
 function adjustMainMargin() {
     if (!mainContent) return;
     
+    const isMobile = window.innerWidth <= 860;
+    
     if (header.classList.contains('hide')) {
-        mainContent.style.marginTop = '20px';
-        mainContent.style.marginTop = '120px';
+        if (isMobile) {
+            mainContent.style.marginTop = '20px';
+        } else {
+            mainContent.style.marginTop = '120px';
+        }
+    } else {
+        if (isMobile) {
+            mainContent.style.marginTop = '15px';
+        } else {
+            mainContent.style.marginTop = '120px';
+        }
     }
 }
 
 function initHeaderScroll() {
     window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
-    
-    window.addEventListener('scroll', throttle(adjustMainMargin, 100));
-
+    window.addEventListener('resize', adjustMainMargin);
     window.addEventListener('load', adjustMainMargin);
-    
     document.addEventListener('DOMContentLoaded', adjustMainMargin);
 }
 
@@ -1224,7 +1234,6 @@ style.textContent =`
         gap: 15px;
     }
 
-    /* Each section takes equal space */
     .cart-item-img {
         flex: 0 0 60px;
         display: flex;
@@ -1939,15 +1948,17 @@ searchStyle.textContent = `
 
 document.head.appendChild(searchStyle);
 
-document.head.appendChild(searchStyle);
-
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
+    handleCountrySelection();
     handleOrderSubmission();
 });
 
-
 window.addEventListener('load', function() {
+    adjustMainMargin();
+});
+
+window.addEventListener('resize', function() {
     adjustMainMargin();
 });
 
