@@ -388,12 +388,9 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.head.appendChild(style);
 
-    productData.forEach(product => {
-        const card = document.querySelector(product.selector);
-        if (!card) return;
-
+    function createFlipCard(card, product) {
         const photo = card.querySelector(".photo");
-        if (!photo) return;
+        if (!photo) return card;
 
         const photoSrc = photo.src;
         const photoAlt = photo.alt;
@@ -463,7 +460,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 isFlipped = false;
             }
         });
-    });
+
+        return card;
+    }
+
+    function initializeAllFlipCards() {
+        productData.forEach(product => {
+            const cards = document.querySelectorAll(product.selector);
+            cards.forEach(card => {
+                if (!card.querySelector('.flip-container')) {
+                    createFlipCard(card, product);
+                }
+            });
+        });
+    }
+
+    initializeAllFlipCards();
+
+    window.initializeFlipCard = createFlipCard;
+    window.reinitializeFlipCards = initializeAllFlipCards;
 });
 
 // smart header
@@ -1548,16 +1563,7 @@ function displaySearchResults(results) {
         productElement.className = 'product pr-' + product.id;
         productElement.innerHTML = `
             <div class="card card-${product.id}">
-                <div class="flip-container">
-                    <div class="flip-front">
-                        <img src="product-${product.id}.jpg" alt="${product.name}" class="photo">
-                    </div>
-                    <div class="flip-back">
-                        <p class="product-name">${product.name}</p>
-                        <p class="product-description">${product.description}</p>
-                        <p class="product-price">€${product.price.toFixed(2)}</p>
-                    </div>
-                </div>
+                <img src="product-${product.id}.jpg" alt="${product.name}" class="photo">
             </div>
             <div class="btn-all">
                 <button class="btn minus add clicked m-${product.id} clicked-${product.id}">-</button>
@@ -1568,57 +1574,57 @@ function displaySearchResults(results) {
             </div>
         `;
         
-        const flipContainer = productElement.querySelector('.flip-container');
         const card = productElement.querySelector('.card');
+        const productDataItem = productData.find(p => p.id === product.id);
         
-        if (flipContainer && card) {
-            card.addEventListener('mouseenter', function () {
-                flipContainer.style.transform = "rotateY(180deg)";
-            });
-            
-            card.addEventListener('mouseleave', function () {
-                flipContainer.style.transform = "rotateY(0deg)";
-            });
+        if (card && productDataItem && window.initializeFlipCard) {
+            window.initializeFlipCard(card, productDataItem);
         }
         
         const cartBtn = productElement.querySelector('.cart-btn');
         const plusBtn = productElement.querySelector('.plus');
         const minusBtn = productElement.querySelector('.minus');
         
-        cartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            handleCartButtonClick(product.id);
-        });
+        if (cartBtn) {
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleCartButtonClick(product.id);
+            });
+        }
         
-        plusBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const currentQuantity = productQuantities[product.id] || 0;
-            const newQuantity = currentQuantity + 1;
-            productQuantities[product.id] = newQuantity;
-            localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
-            updateProductDisplay(product.id, newQuantity);
-            updateCartQuantity(product.id, newQuantity);
-        });
-        
-        minusBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const currentQuantity = productQuantities[product.id] || 0;
-            if (currentQuantity <= 1) {
-                productQuantities[product.id] = 0;
-                localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
-                updateProductDisplay(product.id, 0);
-                removeProductFromCart(product.id);
-            } else {
-                const newQuantity = currentQuantity - 1;
+        if (plusBtn) {
+            plusBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const currentQuantity = productQuantities[product.id] || 0;
+                const newQuantity = currentQuantity + 1;
                 productQuantities[product.id] = newQuantity;
                 localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
                 updateProductDisplay(product.id, newQuantity);
                 updateCartQuantity(product.id, newQuantity);
-            }
-        });
+            });
+        }
+        
+        if (minusBtn) {
+            minusBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const currentQuantity = productQuantities[product.id] || 0;
+                if (currentQuantity <= 1) {
+                    productQuantities[product.id] = 0;
+                    localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
+                    updateProductDisplay(product.id, 0);
+                    removeProductFromCart(product.id);
+                } else {
+                    const newQuantity = currentQuantity - 1;
+                    productQuantities[product.id] = newQuantity;
+                    localStorage.setItem('productQuantities', JSON.stringify(productQuantities));
+                    updateProductDisplay(product.id, newQuantity);
+                    updateCartQuantity(product.id, newQuantity);
+                }
+            });
+        }
         
         resultsContainer.appendChild(productElement);
     });
