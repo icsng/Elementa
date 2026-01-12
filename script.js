@@ -450,7 +450,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // smart header part-1
-
 let lastScrollTop = 0;
 const header = document.querySelector('header');
 const scrollThreshold = 70;
@@ -471,7 +470,7 @@ function throttle(func, limit) {
 
 function handleHeaderScroll() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     if (scrollTop === 0) {
         header.classList.remove('hide');
         adjustMainMargin();
@@ -484,47 +483,34 @@ function handleHeaderScroll() {
     else if (scrollTop < lastScrollTop) {
         header.classList.remove('hide');
     }
-    
+
     lastScrollTop = scrollTop;
     adjustMainMargin();
 }
 
 function adjustMainMargin() {
     if (!mainContent) return;
-    
+
     const isMobile = window.innerWidth <= 860;
-    
+
     if (header.classList.contains('hide')) {
-        mainContent.style.marginTop = '0';
+        mainContent.style.marginTop = '20px';
     } else {
         if (isMobile) {
-            mainContent.style.marginTop = '0';
+            mainContent.style.marginTop = '130px';
         } else {
-            mainContent.style.marginTop = '0';
+            mainContent.style.marginTop = '120px';
         }
     }
 }
 
 function initHeaderScroll() {
-    adjustMainMargin();
-    
     window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
     window.addEventListener('resize', adjustMainMargin);
     window.addEventListener('load', adjustMainMargin);
     document.addEventListener('DOMContentLoaded', adjustMainMargin);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initHeaderScroll();
-});
-
-window.addEventListener('load', function() {
-    adjustMainMargin();
-});
-
-window.addEventListener('resize', function() {
-    adjustMainMargin();
-});
 // other country input
 function handleCountrySelection() {
     const countrySelect = document.querySelector('select.inp');

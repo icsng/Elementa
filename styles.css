@@ -1187,7 +1187,7 @@ option{
 @media (max-width: 860px) {
     header {
         height: 120px;
-        min-height: 110px;
+        /* min-height: 110px; */
         width: 100%;
         padding: 5px;
         position: fixed;
@@ -1203,7 +1203,7 @@ option{
     }
     
     main {
-        margin-top: 150;
+        margin-top: 130px;
         padding: 10px;
         transition: margin-top 0.3s ease-in-out;
     }
