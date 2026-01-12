@@ -379,21 +379,21 @@ document.addEventListener("DOMContentLoaded", function () {
             margin-top: 8px;
             text-align: center;
         }
+        
+        @media (max-width: 860px) {
+            .flip-container.mobile-tapped {
+                transform: rotateY(180deg);
+            }
+        }
     `;
     document.head.appendChild(style);
 
     productData.forEach(product => {
         const card = document.querySelector(product.selector);
-        if (!card) {
-            console.warn(`Card not found: ${product.selector}`);
-            return;
-        }
+        if (!card) return;
 
         const photo = card.querySelector(".photo");
-        if (!photo) {
-            console.warn(`Photo not found in: ${product.selector}`);
-            return;
-        }
+        if (!photo) return;
 
         const photoSrc = photo.src;
         const photoAlt = photo.alt;
@@ -414,10 +414,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         let backHTML = `<p class="product-name">${product.name}</p>`;
         
-        if (product.size && product.size.trim() !== "") {
-            backHTML += `<p class="product-size">${product.size}</p>`;
-        }
-        
         if (product.description && product.description.length > 0) {
             product.description.forEach(desc => {
                 if (desc.trim() !== "") {
@@ -437,19 +433,40 @@ document.addEventListener("DOMContentLoaded", function () {
         flipContainer.appendChild(cardBack);
         card.appendChild(flipContainer);
 
-        card.addEventListener("mouseenter", function () {
-            flipContainer.style.transform = "rotateY(180deg)";
-        });
+        let isMobile = window.innerWidth <= 860;
+        let isFlipped = false;
 
-        card.addEventListener("mouseleave", function () {
-            flipContainer.style.transform = "rotateY(0deg)";
+        function handleCardInteraction() {
+            if (isMobile) {
+                isFlipped = !isFlipped;
+                flipContainer.classList.toggle('mobile-tapped', isFlipped);
+            }
+        }
+
+        if (isMobile) {
+            card.addEventListener("click", handleCardInteraction);
+        } else {
+            card.addEventListener("mouseenter", function () {
+                flipContainer.style.transform = "rotateY(180deg)";
+            });
+
+            card.addEventListener("mouseleave", function () {
+                flipContainer.style.transform = "rotateY(0deg)";
+            });
+        }
+
+        window.addEventListener('resize', function() {
+            isMobile = window.innerWidth <= 860;
+            if (!isMobile) {
+                flipContainer.classList.remove('mobile-tapped');
+                flipContainer.style.transform = "rotateY(0deg)";
+                isFlipped = false;
+            }
         });
     });
-    
-    console.log("Flip cards initialized for all 12 products");
 });
 
-// smart header part-1
+// smart header
 let lastScrollTop = 0;
 const header = document.querySelector('header');
 const scrollThreshold = 70;
