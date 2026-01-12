@@ -497,7 +497,7 @@ function adjustMainMargin() {
         mainContent.style.marginTop = '20px';
     } else {
         if (isMobile) {
-            mainContent.style.marginTop = '130px';
+            mainContent.style.marginTop = '160px';
         } else {
             mainContent.style.marginTop = '120px';
         }
