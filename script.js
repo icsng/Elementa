@@ -37,7 +37,7 @@ function saveUserPreferences(){
 function backupCartToCookies(){
     try{
         const e=JSON.parse(localStorage.getItem('cart'))||[];
-        const t=JSON.parse(localStorage.getItem('productQuantities'))||{};
+        const t=JSON.parse(localStorage.getItem('Quantities'))||{};
         if(e.length>0){
             const n=e.slice(0,10).map(t=>`${t.id}:${t.quantity}`).join(',');
             setCookie('cart_backup',n,7);
@@ -197,117 +197,19 @@ function applyUserPreferences(){
 
 // 3-d tranformation
 document.addEventListener("DOMContentLoaded", function () {
-    const productData = [
-        {
-            selector: ".card-1",
-            name: "Medusa 3D night light",
-            description: [
-                "- USB cable",
-                "- Gift packaging",
-                "- Thorough quality control"
-            ],
-            price: "10 €"
-        },
-        {
-            selector: ".card-2",
-            name: "Rabbit figure",
-            description: [
-                "- Material: polystone",
-                "- Colour: red, white, brown",
-                "- Size: 11*9*13 cm"
-            ],
-            price: "5,66€"
-        },
-        {
-            selector: ".card-3",
-            name: "Doormat with Cats",
-            description: [
-                "- Size: 38 x 58 cm",
-                "- Material: 89% rubber, 11% polyester"
-            ],
-            price: "2,61€"
-        },
-        {
-            selector: ".card-4",
-            name: "Painting Mona Lisa",
-            description: [
-                "- Author: Leonardo da Vinci",
-                "- Style: Renaissance",
-                "- Colour: Yellow, brown"
-            ],
-            price: "11,88€"
-        },
-        {
-            selector: ".card-5",
-            name: "Owl on a stake - Wooden sculpture",
-            description: [
-                "- Size: height 1200 mm",
-                "- Production time: 2–4 weeks"
-            ],
-            price: "113,12€"
-        },
-        {
-            selector: ".card-6",
-            name: "Painting Starry night",
-            description: [
-                "- Premium quality and handcrafted",
-                "- Safe latex paints and eco-friendly materials"
-            ],
-            price: "7,66€"
-        },
-        {
-            selector: ".card-7",
-            name: "Hanging decoration Heart",
-            description: [
-                "- Material: rattan",
-                "- Color: white with glitter",
-                "- Size: 17 cm"
-            ],
-            price: "1,1€"
-        },
-        {
-            selector: ".card-8",
-            name: "Decorative figure Owl",
-            description: [ 
-                "- Size: 11 x 9 x 13 cm"
-            ],
-            price: "7,07€"
-        },
-        {
-            selector: ".card-9",
-            name: "Wall decor Blue sea wave",
-            description: [
-                "- Size: 50x25 cm"
-            ],
-            price: "12,93€"
-
-        },
-        {
-            selector: ".card-10",
-            name: "Crystal ball with 3D cat",
-            description: [
-                "- With wooden base",
-                "- Size: 60mm diameter"
-            ],
-            price: "6,06€"
-        },
-        {
-            selector: ".card-11",
-            name: "Owl figure",
-            description: [
-                "- Size: 17 cm"
-            ],
-            price: "38,38€"
-        },
-        {
-            selector: ".card-12",
-            name: "Florarium Nature",
-            description: [
-                "- Retains its appearance for up to 5-7 years",
-                "- Size: 10.5 cm * 9 cm"
-            ],
-            price: "103,02€"
-        }
+    const productInfo = [
+        { id: 1, name: "Medusa 3D night light", description: ["- USB cable", "- Gift packaging", "- Thorough quality control"], price: "10 €" },
+        { id: 2, name: "Rabbit figure", description: ["- Material: polystone", "- Colour: red, white, brown", "- Size: 11*9*13 cm"], price: "5,66€" },
+        { id: 3, name: "Doormat with Cats", description: ["- Size: 38 x 58 cm", "- Material: 89% rubber, 11% polyester"], price: "2,61€" },
+        { id: 4, name: "Painting Mona Lisa", description: ["- Author: Leonardo da Vinci", "- Style: Renaissance", "- Colour: Yellow, brown"], price: "11,88€" },
+        { id: 5, name: "Owl on a stake - Wooden sculpture", description: ["- Size: height 1200 mm", "- Production time: 2–4 weeks"], price: "113,12€" },
+        { id: 6, name: "Painting Starry night", description: ["- Premium quality and handcrafted", "- Safe latex paints and eco-friendly materials"], price: "7,66€" },
+        { id: 7, name: "Hanging decoration Heart", description: ["- Material: rattan", "- Color: white with glitter", "- Size: 17 cm"], price: "1,1€" },
+        { id: 8, name: "Decorative figure Owl", description: ["- Size: 11 x 9 x 13 cm"], price: "7,07€" },
+        { id: 9, name: "Wall decor Blue sea wave", description: ["- Size: 50x25 cm"], price: "12,93€" },
+        { id: 10, name: "Crystal ball with 3D cat", description: ["- With wooden base", "- Size: 60mm diameter"], price: "6,06€" },
+        { id: 11, name: "Owl figure", description: ["- Size: 17 cm"], price: "38,38€" },
+        { id: 12, name: "Florarium Nature", description: ["- Retains its appearance for up to 5-7 years", "- Size: 10.5 cm * 9 cm"], price: "103,02€" }
     ];
 
     const style = document.createElement("style");
@@ -370,7 +272,6 @@ document.addEventListener("DOMContentLoaded", function () {
             padding-left: 10px;
             line-height: 1.3;
         }
-
         .product-price {
             font-family: 'ABeeZee', sans-serif;
             font-size: 22px;
@@ -388,9 +289,14 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.head.appendChild(style);
 
-    function createFlipCard(card, product) {
+    function setupFlipCard(card, productId) {
+        if (!card || card.querySelector('.flip-container')) return;
+        
+        const product = productInfo.find(p => p.id === productId);
+        if (!product) return;
+        
         const photo = card.querySelector(".photo");
-        if (!photo) return card;
+        if (!photo) return;
 
         const photoSrc = photo.src;
         const photoAlt = photo.alt;
@@ -433,15 +339,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let isMobile = window.innerWidth <= 860;
         let isFlipped = false;
 
-        function handleCardInteraction() {
-            if (isMobile) {
+        if (isMobile) {
+            card.addEventListener("click", function() {
                 isFlipped = !isFlipped;
                 flipContainer.classList.toggle('mobile-tapped', isFlipped);
-            }
-        }
-
-        if (isMobile) {
-            card.addEventListener("click", handleCardInteraction);
+            });
         } else {
             card.addEventListener("mouseenter", function () {
                 flipContainer.style.transform = "rotateY(180deg)";
@@ -460,25 +362,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 isFlipped = false;
             }
         });
-
-        return card;
     }
 
     function initializeAllFlipCards() {
-        productData.forEach(product => {
-            const cards = document.querySelectorAll(product.selector);
+        for (let i = 1; i <= 12; i++) {
+            const cards = document.querySelectorAll(`.card-${i}`);
             cards.forEach(card => {
-                if (!card.querySelector('.flip-container')) {
-                    createFlipCard(card, product);
-                }
+                setupFlipCard(card, i);
             });
-        });
+        }
     }
 
     initializeAllFlipCards();
 
-    window.initializeFlipCard = createFlipCard;
-    window.reinitializeFlipCards = initializeAllFlipCards;
+    window.setupFlipCard = setupFlipCard;
 });
 
 // smart header
@@ -1574,11 +1471,11 @@ function displaySearchResults(results) {
             </div>
         `;
         
-        const card = productElement.querySelector('.card');
-        const productDataItem = productData.find(p => p.id === product.id);
+        resultsContainer.appendChild(productElement);
         
-        if (card && productDataItem && window.initializeFlipCard) {
-            window.initializeFlipCard(card, productDataItem);
+        const card = productElement.querySelector(`.card-${product.id}`);
+        if (card && window.setupFlipCard) {
+            window.setupFlipCard(card, product.id);
         }
         
         const cartBtn = productElement.querySelector('.cart-btn');
@@ -1626,10 +1523,6 @@ function displaySearchResults(results) {
             });
         }
         
-        resultsContainer.appendChild(productElement);
-    });
-    
-    results.forEach(product => {
         const quantity = productQuantities[product.id] || 0;
         updateProductDisplay(product.id, quantity);
     });
