@@ -160,7 +160,7 @@ a{
     color: #000000;
 }
 
-main{
+main {
     margin-top: 120px;
     transition: margin-top 0.3s ease-in-out;
 }
@@ -1203,7 +1203,7 @@ option{
     }
     
     main {
-        margin-top: 120px;
+        margin-top: 0;
         padding: 10px;
         transition: margin-top 0.3s ease-in-out;
     }

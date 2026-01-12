@@ -495,23 +495,36 @@ function adjustMainMargin() {
     const isMobile = window.innerWidth <= 860;
     
     if (header.classList.contains('hide')) {
-        mainContent.style.marginTop = '20px';
+        mainContent.style.marginTop = '0';
     } else {
         if (isMobile) {
-            mainContent.style.marginTop = '130px';
+            mainContent.style.marginTop = '0';
         } else {
-            mainContent.style.marginTop = '120px';
+            mainContent.style.marginTop = '0';
         }
     }
 }
 
 function initHeaderScroll() {
+    adjustMainMargin();
+    
     window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
     window.addEventListener('resize', adjustMainMargin);
     window.addEventListener('load', adjustMainMargin);
     document.addEventListener('DOMContentLoaded', adjustMainMargin);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    initHeaderScroll();
+});
+
+window.addEventListener('load', function() {
+    adjustMainMargin();
+});
+
+window.addEventListener('resize', function() {
+    adjustMainMargin();
+});
 // other country input
 function handleCountrySelection() {
     const countrySelect = document.querySelector('select.inp');
@@ -559,7 +572,6 @@ function handleCountrySelection() {
         });
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     handleCountrySelection();
