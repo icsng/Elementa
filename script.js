@@ -441,11 +441,20 @@ function initHeaderScroll() {
 }
 
 // other country input
+let countryInputInitialized = false;
+
 function handleCountrySelection() {
+    if (countryInputInitialized) return;
+    
     const countrySelect = document.querySelector('select.inp');
     const form = document.querySelector('.contact-form');
     
     if (!countrySelect || !form) return;
+    
+    if (document.querySelector('.other-country-container')) {
+        countryInputInitialized = true;
+        return;
+    }
     
     const otherCountryInput = document.createElement('div');
     otherCountryInput.className = 'other-country-container';
@@ -486,10 +495,17 @@ function handleCountrySelection() {
             }
         });
     }
+    
+    countryInputInitialized = true;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    handleCountrySelection();
+    if (window.location.pathname.includes('submit-order.html')) {
+        handleCountrySelection();
+    }
+    
+    initHeaderScroll();
+    handleOrderSubmission();
 });
 
 // CART
@@ -1860,7 +1876,6 @@ document.head.appendChild(searchStyle);
 
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
-    handleCountrySelection();
     handleOrderSubmission();
 });
 
