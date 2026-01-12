@@ -494,10 +494,10 @@ function adjustMainMargin() {
     const isMobile = window.innerWidth <= 860;
 
     if (header.classList.contains('hide')) {
-        mainContent.style.marginTop = '20px';
+        mainContent.style.marginTop = '25px';
     } else {
         if (isMobile) {
-            mainContent.style.marginTop = '160px';
+            mainContent.style.marginTop = '180px';
         } else {
             mainContent.style.marginTop = '120px';
         }
