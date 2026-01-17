@@ -1318,18 +1318,13 @@ style.textContent =`
 document.head.appendChild(style);
 
 // Clear the cart
-function handleOrderSubmission() {
-    const orderForm = document.querySelector('form.contact-form');
-    
-    if (orderForm) {
-        orderForm.addEventListener('submit', function() {
-            cart = [];
-            productQuantities = {};
-            localStorage.removeItem('cart');
-            localStorage.removeItem('productQuantities');
-            
-            console.log('Order submitted - cart cleared');
-        });
+function clearCartOnThankYou() {
+    if (window.location.pathname.includes('thank-you.html')) {
+        cart = [];
+        productQuantities = {};
+        localStorage.removeItem('cart');
+        localStorage.removeItem('productQuantities');
+        deleteCookie('cart_backup');
     }
 }
 
@@ -1874,9 +1869,23 @@ searchStyle.textContent = `
 
 document.head.appendChild(searchStyle);
 
+// contacts - call me 
+function handleCallMeSubmit(event) {
+    event.preventDefault();
+    const phoneInput = document.getElementById('phoneInput');
+    
+    if (phoneInput.checkValidity()) {
+        alert('Thank you! Expect a call within a week.');
+        return true;
+    } else {
+        phoneInput.reportValidity();
+        return false;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
-    handleOrderSubmission();
+    clearCartOnThankYou();
 });
 
 window.addEventListener('load', function() {
