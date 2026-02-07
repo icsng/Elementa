@@ -1358,7 +1358,7 @@ const searchProducts = productCartData.map(product => {
         9: {
             description: "Size: 50x25 cm",
             category: "wall decor",
-            tags: ["blue sea", "wave", "wall decor", "sea", "ocean", "blue"]
+            tags: ["blue sea", "wave", "wall decor", "sea", "ocean", "blue", "painting"]
         },
         10: {
             description: "With wooden base, Size: 60mm diameter",
