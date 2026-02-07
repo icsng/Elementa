@@ -1,2 +1,2 @@
-# Decor-project
-Decor-webshop-project, Logika, Front-End
+# Decor-webshop-project Elementa
+From Logika school, Elementa webshop-project in Front-End course
