@@ -788,7 +788,7 @@ function updateCartButtonDisplay(button, quantity) {
         button.classList.add('has-quantity');
         
         button.style.cssText = `
-            width: 45px;
+            width: 75px;
             height: 45px;
             display: flex;
             align-items: center;
