@@ -382,7 +382,6 @@ document.addEventListener("DOMContentLoaded", function () {
 let lastScrollTop = 0;
 const header = document.querySelector('header');
 const scrollThreshold = 70;
-const mainContent = document.querySelector('main');
 
 function throttle(func, limit) {
     let inThrottle;
@@ -402,7 +401,6 @@ function handleHeaderScroll() {
 
     if (scrollTop === 0) {
         header.classList.remove('hide');
-        adjustMainMargin();
         return;
     }
 
@@ -414,31 +412,17 @@ function handleHeaderScroll() {
     }
 
     lastScrollTop = scrollTop;
-    adjustMainMargin();
-}
-
-function adjustMainMargin() {
-    if (!mainContent) return;
-
-    const isMobile = window.innerWidth <= 860;
-
-    if (header.classList.contains('hide')) {
-        mainContent.style.marginTop = '25px';
-    } else {
-        if (isMobile) {
-            mainContent.style.marginTop = '195px';
-        } else {
-            mainContent.style.marginTop = '120px';
-        }
-    }
 }
 
 function initHeaderScroll() {
-    window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
-    window.addEventListener('resize', adjustMainMargin);
-    window.addEventListener('load', adjustMainMargin);
-    document.addEventListener('DOMContentLoaded', adjustMainMargin);
+    if (header) {
+        window.addEventListener('scroll', throttle(handleHeaderScroll, 100));
+    }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    initHeaderScroll();
+});
 
 // other country input
 let countryInputInitialized = false;
